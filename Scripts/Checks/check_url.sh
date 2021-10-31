@@ -2,7 +2,7 @@
 ###########################
 #
 # Check if url exists on a list and split in two lists. 
-# Example: ./checkURL.sh list.txt
+# Example: ./check_url.sh list.txt
 #
 ###########################
 
