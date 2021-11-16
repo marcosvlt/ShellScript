@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script to check numbers of databases
+# Script to check time interval
 # Author https://github.com/marcosvlt
 # 11/2020 - V.0.1
 # ###################################
