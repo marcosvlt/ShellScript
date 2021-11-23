@@ -30,4 +30,4 @@ else
 
 fi
 
-exit "$STATUS"
+exit $STATUS
