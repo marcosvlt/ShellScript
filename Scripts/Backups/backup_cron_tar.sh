@@ -1,12 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 ###########################
 #
 # Automatic backup script. 
 # Used with cron
-# Example: ./backup_cron_tar.sh ORIGEM DESTINATION NAME
+# need install notify-send to receibe desktop notification
+# Example: ./backupRsync.sh ORIGEM DESTINATION NAME
 #
 ###########################
-
 
 ORIGEM=$1
 DESTINO=$2
@@ -15,6 +15,8 @@ LOG_FILE=(/var/log/backup/$NOME.log)
 
 mkdir /var/log/backup >> /dev/null 2>&1
 touch $LOG_FILE
+
+notify-send "Backup '$ORIGEM' iniciado"
 
 if [ "$ORIGEM" == "" -o "$DESTINO" == "" -o "$NOME" == "" ]; then
         echo "Ferramenta de backup"
@@ -35,13 +37,13 @@ if [ ! -d $DESTINO ]; then
         exit 1
 fi
 
-tar cvzf  /$DESTINO/$NOME.$(date +%Y%m%d-%H%M%S).tar.gz  $ORIGEM  > $LOG_FILE 2>&1
-date >> $LOG_FILE
+rsync -avP --delete $ORIGEM $DESTINO  > $LOG_FILE 2>&1
         if [[ $? = 0 ]]; then
                 echo "Backup OK" >> $LOG_FILE
+                notify-send "Backup '$ORIGEM' Finalizado"
         else
                 echo "Backup NOK" >> $LOG_FILE
+                notify-send "Erro ao fazer backup '$ORIGEM'"
         fi
 
-# Deleta arquivos com mais de 5 dias
-find /$DESTINO/ -mindepth 1 -mtime +5 -delete
+date >> $LOG_FILE
