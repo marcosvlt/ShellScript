@@ -52,7 +52,13 @@ https://leetcode.com/playground/new/empty
 ### Books:
 https://www.shellscript.com.br/ PT-BR
 
+### OpenSource Projects
 
+https://opensource-heroes.com/discover/shell
+
+https://opensource-heroes.com/contributors?language=shell
+
+https://opensource-heroes.com/awesome/shell
 
 
 
